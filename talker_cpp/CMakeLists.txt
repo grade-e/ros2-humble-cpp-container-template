@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(talker_example_cpp)
-
-if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    add_compile_options(-Wall -Wextra -Wpedantic)
-endif() 
+project(talker_cpp)
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -16,6 +12,11 @@ ament_target_dependencies(talker rclcpp std_msgs)
 install(TARGETS
 talker
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_package()

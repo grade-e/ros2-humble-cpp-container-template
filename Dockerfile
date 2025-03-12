@@ -1,18 +1,28 @@
+# Base image
 FROM ros:humble
 
-SHELL ["/bin/bash", "-c"]
-
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    g++ \
+    ros-humble-rclcpp \
+    ros-humble-std-msgs \
     python3-colcon-common-extensions \
-    && rm -rf /var/lib/apt/lists/*
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
-COPY . .
+# Create workspace
+WORKDIR /root/ros2_ws
+RUN mkdir -p src
 
-RUN source /opt/ros/humble/setup.bash && \
-    colcon build --packages-select talker_example_cpp
+# Copy package
+COPY ./talker_cpp /root/ros2_ws/src/talker_cpp
 
-CMD ["bash", "-c", "source /opt/ros/humble/setup.bash && source install/setup.bash && ros2 launch talker_example_cpp ros2_example.launch.py"]
+# Build package
+RUN . /opt/ros/humble/setup.sh && \
+    colcon build --packages-select talker_cpp
+
+# Source entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
