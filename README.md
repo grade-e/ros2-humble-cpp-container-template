@@ -1,13 +1,13 @@
-# class-cpp-container-template
+# ros2-humble-cpp-container-template
 
 ## Build
 
 ```zsh
-docker build -t simple-class-cpp .
+docker build -t ros2-talker-cpp .
 ```
 
 ## Run
 
 ```zsh
-docker run --rm simple-class-cpp
+docker run --rm -it ros2-talker-cpp
 ```
