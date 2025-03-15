@@ -1,0 +1,25 @@
+{
+    "name": "ROS2 Humble Docker",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": ".."
+    },
+    "workspaceFolder": "/root/ros2_ws",
+    "runArgs": [
+        "--net=host",
+        "--privileged"
+    ],
+    "remoteUser": "root",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "postCreateCommand": "bash -c 'source /opt/ros/humble/setup.bash && colcon build'"
+}
