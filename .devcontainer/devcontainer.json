@@ -17,6 +17,9 @@
             },
             "extensions": [
                 "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack"
+                "ms-python.python",
+                "ms-vscode.cmake-tools",
                 "ms-azuretools.vscode-docker"
             ]
         }
