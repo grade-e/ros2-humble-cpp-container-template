@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-rclcpp \
     ros-humble-std-msgs \
     python3-colcon-common-extensions \
+    clang-format \
     build-essential && \
     rm -rf /var/lib/apt/lists/*
 
